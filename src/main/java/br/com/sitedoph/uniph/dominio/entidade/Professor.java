@@ -1,5 +1,7 @@
 package br.com.sitedoph.uniph.dominio.entidade;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +32,7 @@ public class Professor {
 	private String email;
 
 	@Column(name = "DT_CADASTRO") @Temporal(TemporalType.TIMESTAMP)
-	private String dataDeCadastro;
+	private Calendar dataDeCadastro;
 
 	@Column(name = "CURRICULO")
 	private String curriculo;
@@ -75,13 +77,17 @@ public class Professor {
 		this.email = email;
 	}
 
-	public String getDataDeCadastro() {
+	
+	public Calendar getDataDeCadastro() {
 		return dataDeCadastro;
 	}
 
-	public void setDataDeCadastro(String dataDeCadastro) {
+	public void setDataDeCadastro(Calendar dataDeCadastro) {
 		this.dataDeCadastro = dataDeCadastro;
 	}
+
+
+	
 
 	public String getCurriculo() {
 		return curriculo;
