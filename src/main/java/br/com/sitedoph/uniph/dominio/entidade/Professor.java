@@ -34,8 +34,10 @@ public class Professor {
 	@Column(name = "DT_CADASTRO") @Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataDeCadastro;
 
-	@Column(name = "CURRICULO")
+	@Column(name = "CURRICULO", length = 5000)
 	private String curriculo;
+	
+	
 
 	public Long getId() {
 		return id;

@@ -4,6 +4,8 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -38,6 +40,13 @@ public class Aluno {
 
 	@Column(name = "DATA_CADASTRO")
 	private Calendar dataDeCadastro;
+	
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column
+    private Sexo sexo;
+	
+	
 
 	public Long getId() {
 		return id;
