@@ -26,7 +26,7 @@ public class Usuario {
 	 @Column(name = "EMAIL", unique = true)
 	 private String email;
 
-	@NotBlank(message = )
+	@NotBlank(message = "Não pode estar vazio")
 	@Column(name = "LOGIN")
 	private String login;
 	
