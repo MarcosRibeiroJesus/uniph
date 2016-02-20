@@ -12,41 +12,50 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
+
 @Entity
 @Table(name = "TB_ALUNO")
 public class Aluno {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "MATRICULA")
 	private Long id;
 
 	@Column(name = "NOME_COMPLETO")
+	@NotBlank(message = "Preencha o nome completo!")
 	private String nomeCompleto;
 
 	@Column(name = "RG")
 	private String rg;
 
+	@CPF(message = "CPF inválido")
+	@NotBlank(message = "Preencha o CPF!")
 	@Column(name = "CPF")
 	private String cpf;
 
-	@Column(name = "DATA_NASCIMENTO") @Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DATA_NASCIMENTO")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataDeNascimento;
 
 	@Column(name = "TELEFONE")
 	private String telefone;
 
+	@NotBlank(message = "Preencha o e-mail!")
+	@Email(message = "Endereço de e-mail inválido")
 	@Column(name = "EMAIL")
 	private String email;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATA_CADASTRO")
 	private Calendar dataDeCadastro;
-	
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column
-    private Sexo sexo;
-	
-	
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "SEXO")
+	private Sexo sexo;
 
 	public Long getId() {
 		return id;
@@ -110,6 +119,28 @@ public class Aluno {
 
 	public void setDataDeCadastro(Calendar dataDeCadastro) {
 		this.dataDeCadastro = dataDeCadastro;
+	}
+
+	public Sexo getSexo() {
+
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+
+		this.sexo = sexo;
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno [" + (id != null ? "id=" + id + ", " : "")
+				+ (nomeCompleto != null ? "nomeCompleto=" + nomeCompleto + ", " : "")
+				+ (rg != null ? "rg=" + rg + ", " : "") + (cpf != null ? "cpf=" + cpf + ", " : "")
+				+ (dataDeNascimento != null ? "dataDeNascimento=" + dataDeNascimento.getTime() + ", " : "")
+				+ (telefone != null ? "telefone=" + telefone + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "")
+				+ (dataDeCadastro != null ? "dataDeCadastro=" + dataDeCadastro.getTime() + ", " : "")
+				+ (sexo != null ? "sexo=" + sexo : "") + "]";
 	}
 
 }

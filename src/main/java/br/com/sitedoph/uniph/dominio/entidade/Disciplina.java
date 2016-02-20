@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "TB_DISCIPLINA")
 public class Disciplina {
@@ -15,12 +17,16 @@ public class Disciplina {
 	@GeneratedValue
 	@Column(name = "CODIGO")
 	private Long id;
-	
+
+	@NotEmpty(message = "Preencha a descrição!")
 	@Column(name = "DESCRICAO")
 	private String descricao;
 	
 	@ManyToOne
 	private Professor professor;
+	
+	@Column(name = "CARGA_HORARIA")
+	private String cargaHoraria;
 	
 	public Long getId() {
 		return id;
@@ -46,15 +52,20 @@ public class Disciplina {
 		this.professor = professor;
 	}
 
-	public String getNomeCompleto() {
-		return nomeCompleto;
+	public String getCargaHoraria() {
+		return cargaHoraria;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public void setCargaHoraria(String cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
 	}
 
-	@Column(name = "CARGA_HORARIA")
-	private String nomeCompleto;
+	
+	 @Override
+	    public String toString() {
+
+	        return "Disciplina [id=" + id + ", descricao=" + descricao + ", professor=" + professor + ", cargaHoraria=" + cargaHoraria + "]";
+	    }
+
 
 }
